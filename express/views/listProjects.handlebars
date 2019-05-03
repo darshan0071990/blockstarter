@@ -1,0 +1,37 @@
+<nav class="breadcrumb">
+    <a class="breadcrumb-item" href="/">Home</a>
+    <span class="breadcrumb-item active">My Projects</span>
+</nav>
+
+<div class="container">
+    <div class="row justify-content-end">
+        <a href="/myprojects/createProject" class="btn btn-primary btn-md" role="button"><span class="fa fa-edit"></span> Create Project</a>
+    </div>
+</div>
+
+{{#if data}}
+    <div class="row mt-3">
+        {{#each data}}
+            <div class="col-sm-4">
+                <a class="card mt-3" style="width: 20rem;color: #333;text-decoration : none" href="/myprojects/{{address}}/view">
+                    <div class="card-block">
+                        <h4 class="card-title">{{title}}</h4>
+                        <p class="card-text">{{description}}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Stage &nbsp;<span class="badge badge-primary">{{stage}}</li>
+                        <li class="list-group-item">Current Funding:&nbsp;{{currentFunding}}</li>
+                        <li class="list-group-item">Required Funding:&nbsp;{{fundingGoal}}</li>
+                        {{#if fundingGoalReached}}
+                            <li class="list-group-item">Funding &nbsp; <span class="badge badge-success">SUCCESSFULLY</span></li>
+                        {{else}}
+                            <li class="list-group-item">Funding &nbsp; <span class="badge badge-success">PENDING</span></li>
+                        {{/if}}
+                    </ul>
+                </a>
+            </div>
+        {{/each}}
+    </div>
+{{else}}
+    <p class="alert alert-warning mt-5">You do not own any Projects. Please Create One.</p>
+{{/if}}
